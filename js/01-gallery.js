@@ -1,10 +1,8 @@
 import { galleryItems } from "./gallery-items.js";
 // Change code below this line
 
-const para = document.createElement("p");
-para.textContent = "giqwvilgfweifgcbweifcbui";
 const div = document.createElement("div");
-div.classList.add(".gallery__item");
+div.classList.add("gallery__item");
 console.log(div);
 const galleryUl = document.querySelector(".gallery");
 div.append(galleryUl);
@@ -29,7 +27,7 @@ galleryItems.forEach((i) => {
   galleryUl.append(list);
   const link = document.createElement("a");
   link.href = i.original;
-  link.classList.add(".gallery__link");
+  link.classList.add("gallery__link");
 
   list.append(link);
   const img = document.createElement("img");
