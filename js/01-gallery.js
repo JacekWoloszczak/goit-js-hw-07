@@ -25,24 +25,15 @@ galleryItems.forEach((i) => {
   link.append(img);
 
   img.addEventListener("click", (event) => {
+    event.preventDefault();
     const selectedImage = event.target.dataset.source;
     console.log(selectedImage);
     const instance = basicLightbox.create(`
     <div class="modal">
-    <img src="${selectedImage}"width="800" height="600">
+    <img src="${selectedImage}"width="900" height="600">
     </div>
 `);
 
     instance.show();
-
-    if (instance.show() === true) {
-      instance.addEventListener("keydown", (event) => {
-        if (event.key === Escape) {
-          instance.close();
-        }
-      });
-    } else {
-      alert("nacisnij ESC");
-    }
   });
 });
