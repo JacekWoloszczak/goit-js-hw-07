@@ -1,28 +1,15 @@
 import { galleryItems } from "./gallery-items.js";
 // Change code below this line
-
+const body = document.querySelector("body");
 const div = document.createElement("div");
 div.classList.add("gallery__item");
-console.log(div);
+
+body.append(div);
+console.log(body);
 const galleryUl = document.querySelector(".gallery");
 div.append(galleryUl);
-// const list = document.createElement("li");
-// galleryUl.append(list);
-// const link = document.createElement("a");
-// link.href = "";
-// link.classList.add(".gallery__link");
-
-// list.append(link);
-// const img = document.createElement("img");
-// img.src = "";
-// img.alt = "";
-// img.setAttribute("data-source", "");
-// link.append(img);
 
 galleryItems.forEach((i) => {
-  //   console.log(i.preview);
-  //   console.log(i.description);
-  //   console.log(i.original);
   const list = document.createElement("li");
   galleryUl.append(list);
   const link = document.createElement("a");
@@ -31,8 +18,31 @@ galleryItems.forEach((i) => {
 
   list.append(link);
   const img = document.createElement("img");
+  img.classList.add("gallery__image");
   img.src = i.preview;
   img.alt = i.description;
   img.setAttribute("data-source", i.original);
   link.append(img);
+
+  img.addEventListener("click", (event) => {
+    const selectedImage = event.target.dataset.source;
+    console.log(selectedImage);
+    const instance = basicLightbox.create(`
+    <div class="modal">
+    <img src="${selectedImage}"width="800" height="600">
+    </div>
+`);
+
+    instance.show();
+
+    if (instance.show() === true) {
+      instance.addEventListener("keydown", (event) => {
+        if (event.key === Escape) {
+          instance.close();
+        }
+      });
+    } else {
+      alert("nacisnij ESC");
+    }
+  });
 });
